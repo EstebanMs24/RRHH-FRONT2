@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RRHH CESDE - Inicio</title>
+    <!-- Enlazamos la hoja de estilos externa -->
+    <link rel="stylesheet" href="../estilos.css">
+</head>
+<body>
+
+    <!-- =====================================================
+         ENCABEZADO  (aparece en todas las páginas igual)
+         ===================================================== -->
+    <header>
+        <h1>&#127970; SELECCIÓN RRHH CESDE</h1>
+        <span>Sistema de Gestión de Talento Humano</span>
+    </header>
+
+    <!-- =====================================================
+         MENÚ DE NAVEGACIÓN
+         La clase "activo" resalta la página actual en azul.
+         ===================================================== -->
+    <nav>
+        <a href="index.html" class="activo">Inicio</a>
+        <a href="vacantes.html">Vacantes</a>
+        <a href="aspirantes.html">Aspirantes</a>
+        <a href="procesos.html">Procesos</a>
+    </nav>
+
+    <!-- =====================================================
+         CONTENIDO PRINCIPAL
+         ===================================================== -->
+    <main>
+
+        <!-- Bienvenida -->
+        <div class="seccion">
+            <h2>Panel de Control</h2>
+            <p style="color: #666; line-height: 1.6;">
+                Bienvenido al sistema de selección de personal de <strong>CESDE</strong>.<br>
+                Desde aquí puedes gestionar las vacantes disponibles, registrar aspirantes
+                y llevar el seguimiento del proceso de selección.
+            </p>
+        </div>
+
+        <!-- =====================================================
+             TARJETAS RESUMEN  (muestran contadores dinámicos)
+             Los números se calculan con JavaScript al cargar.
+             ===================================================== -->
+        <div class="tarjetas-resumen">
+
+            <div class="tarjeta azul">
+                <h3>Vacantes Activas</h3>
+                <!-- El id permite que JS actualice el número -->
+                <div class="numero" id="total-vacantes">0</div>
+            </div>
+
+            <div class="tarjeta verde">
+                <h3>Aspirantes Registrados</h3>
+                <div class="numero" id="total-aspirantes">0</div>
+            </div>
+
+            <div class="tarjeta naranja">
+                <h3>Procesos en Curso</h3>
+                <div class="numero" id="total-procesos">0</div>
+            </div>
+
+        </div>
+
+        <!-- Accesos directos -->
+        <div class="seccion">
+            <h2>Accesos Rápidos</h2>
+            <p style="color: #888; font-size: 13px; margin-bottom: 15px;">
+                Usa estos botones para ir directamente a registrar un nuevo elemento.
+            </p>
+            <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <a href="vacantes.html"   class="btn btn-primario">+ Nueva Vacante</a>
+                <a href="aspirantes.html" class="btn btn-exito">+ Nuevo Aspirante</a>
+                <a href="procesos.html"   class="btn" style="background-color: #e67e22; color: white;">+ Nuevo Proceso</a>
+            </div>
+        </div>
+
+        <!-- Instrucciones de uso -->
+        <div class="seccion">
+            <h2>¿Cómo usar el sistema?</h2>
+            <ol style="padding-left: 20px; line-height: 2; color: #555; font-size: 14px;">
+                <li>Ve a <strong>Vacantes</strong> y registra el cargo que necesitas cubrir.</li>
+                <li>Ve a <strong>Aspirantes</strong> y registra a las personas que aplican.</li>
+                <li>Ve a <strong>Procesos</strong>, selecciona una vacante y un aspirante,
+                    y asigna la etapa del proceso (convocatoria, entrevista, etc.).</li>
+                <li>Desde la tabla de Procesos puedes cambiar la etapa en cualquier momento.</li>
+            </ol>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>CESDE &copy; 2024 &mdash; Sistema de Selección RRHH</p>
+    </footer>
+
+    <!-- =====================================================
+         SCRIPTS
+         Primero almacenamiento.js (tiene las funciones base)
+         Luego el bloque inline que usa esas funciones.
+         ===================================================== -->
+    <script src="js/almacenamiento.js"></script>
+    <script>
+        // Leer las listas y actualizar los contadores de las tarjetas
+        function actualizarContadores() {
+            // Solo contamos vacantes con estado "activa"
+            var vacantesActivas = obtenerVacantes().filter(function (v) {
+                return v.estado === "activa";
+            });
+
+            var totalAspirantes = obtenerAspirantes().length;
+            var totalProcesos   = obtenerProcesos().length;
+
+            document.getElementById("total-vacantes").textContent   = vacantesActivas.length;
+            document.getElementById("total-aspirantes").textContent = totalAspirantes;
+            document.getElementById("total-procesos").textContent   = totalProcesos;
+        }
+
+        // Ejecutar al cargar la página
+        actualizarContadores();
+    </script>
+
+</body>
+</html>

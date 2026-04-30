@@ -1,0 +1,62 @@
+import { useState, useEffect } from 'react'
+import './App.css'
+import { Route, Routes, Navigate } from 'react-router-dom'
+import LoginPage from './Pages/LoginPage'
+import RegisterPage from './Pages/RegisterPage'
+
+function App() {
+
+  function inicializarDatos() {
+        if (!localStorage.getItem("reclutadores")) {
+            const reclutadoresIniciales = [
+                { nombre: "Ana Gómez",  email: "ana@cesde.edu.co",  password: "12345678" },
+                { nombre: "Luis Pérez", email: "luis@cesde.edu.co", password: "abcdefgh" }
+            ];
+            localStorage.setItem("reclutadores", JSON.stringify(reclutadoresIniciales));
+        }
+    }
+
+    inicializarDatos();
+
+  let [isAuthenticated, setIsAuthenticated] = useState(localStorage.getItem('isAuthenticated') == "true");
+  let [userName, setUserName] = useState(localStorage.getItem('userName') || '' );
+
+   // console.log("usuario logueado: "+isAuthenticated);
+
+  useEffect(()=> {
+    localStorage.setItem('isAuthenticated', isAuthenticated);
+    localStorage.setItem('userName', userName);
+  },[isAuthenticated, userName]);
+
+
+
+  let handleLogin = (userName) => {
+    setIsAuthenticated(true); // token de autorizacion
+    setUserName(userName);
+  };
+
+  let handlerLogout = () => {
+    setIsAuthenticated(false); // token de autorizacion
+    setUserName('');
+    localStorage.removeItem('isAuthenticated');
+    localStorage.removeItem('userName');
+    console.log(isAuthenticated)
+    console.log(userName)
+    
+  }
+
+  console.log(isAuthenticated)
+  console.log(userName)
+
+  return (
+    <>
+      <Routes>
+        <Route path='/' element={<LoginPage onLogin={handleLogin} />}/>
+        <Route path='/Login' element={<LoginPage onLogin={handleLogin} />}/>
+        <Route path='/Register' element={<RegisterPage user={userName} onLogout={handlerLogout}/>}/>
+      </Routes>
+    </>
+  )
+}
+
+export default App
