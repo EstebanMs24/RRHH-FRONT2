@@ -8,7 +8,7 @@ export default function Navbar({user, onLogout}) {
       <nav>
         <Link to="/">Inicio</Link>
         <a href="vacantes.html">Vacantes</a>
-        <a href="aspirantes.html" className="activo">Aspirantes</a>
+        <Link to="/Aspirantes">Aspirantes</Link>
         <a href="procesos.html">Procesos</a>
 
         {!user ? <Link to="/Login"> Login</Link> : ""}
