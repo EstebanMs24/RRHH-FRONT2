@@ -3,8 +3,7 @@ import './App.css'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import LoginPage from './Pages/LoginPage'
 import RegisterPage from './Pages/RegisterPage'
-import Aspirantes from './Components/Aspirantes'
-import Navbar from './Components/Navbar'
+import AspirantesPage from './Pages/AspirantesPage'
 
 function App() {
 
@@ -56,7 +55,7 @@ function App() {
         <Route path='/' element={<LoginPage onLogin={handleLogin} />}/>
         <Route path='/Login' element={<LoginPage onLogin={handleLogin} />}/>
         <Route path='/Register' element={<RegisterPage user={userName} onLogout={handlerLogout}/>}/>
-        <Route path='/Aspirantes' element={isAuthenticated ? <><Navbar user={userName} onLogout={handlerLogout} /><Aspirantes /></> : <Navigate to="/Login" />}/>
+        <Route path='/Aspirantes' element={isAuthenticated ? <AspirantesPage user={userName} onLogout={handlerLogout} /> : <Navigate to="/Login" />}/>
       </Routes>
     </>
   )
