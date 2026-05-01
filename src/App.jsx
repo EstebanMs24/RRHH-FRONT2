@@ -3,6 +3,8 @@ import './App.css'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import LoginPage from './Pages/LoginPage'
 import RegisterPage from './Pages/RegisterPage'
+import VacantesPage from './Pages/vacantesPage'
+
 
 function App() {
 
@@ -54,6 +56,7 @@ function App() {
         <Route path='/' element={<LoginPage onLogin={handleLogin} />}/>
         <Route path='/Login' element={<LoginPage onLogin={handleLogin} />}/>
         <Route path='/Register' element={<RegisterPage user={userName} onLogout={handlerLogout}/>}/>
+        <Route path='/vacantes' element={<VacantesPage user={userName} onLogout={handlerLogout}/>}/>
       </Routes>
     </>
   )
