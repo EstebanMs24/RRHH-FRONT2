@@ -4,6 +4,10 @@ import { Route, Routes, Navigate } from 'react-router-dom'
 import LoginPage from './Pages/LoginPage'
 import RegisterPage from './Pages/RegisterPage'
 import AspirantesPage from './Pages/AspirantesPage'
+import VacantesPage from './Pages/vacantesPage'
+
+import Aspirantes from './Components/Aspirantes'
+import Navbar from './Components/Navbar'
 
 function App() {
 
@@ -55,7 +59,8 @@ function App() {
         <Route path='/' element={<LoginPage onLogin={handleLogin} />}/>
         <Route path='/Login' element={<LoginPage onLogin={handleLogin} />}/>
         <Route path='/Register' element={<RegisterPage user={userName} onLogout={handlerLogout}/>}/>
-        <Route path='/Aspirantes' element={isAuthenticated ? <AspirantesPage user={userName} onLogout={handlerLogout} /> : <Navigate to="/Login" />}/>
+        <Route path='/vacantes' element={<VacantesPage user={userName} onLogout={handlerLogout}/>}/>
+        <Route path='/Aspirantes' element={isAuthenticated ? <><Navbar user={userName} onLogout={handlerLogout} /><Aspirantes /></> : <Navigate to="/Login" />}/>
       </Routes>
     </>
   )

@@ -26,7 +26,7 @@ var CLAVE_PROCESOS   = "rrhh_procesos";
 
 // Devuelve el array de vacantes guardadas.
 // Si no hay nada guardado todavía, devuelve un array vacío [].
-function obtenerVacantes() {
+export function obtenerVacantes() {
     var datos = localStorage.getItem(CLAVE_VACANTES);
     // Si 'datos' es null (no existe), devuelve []
     // Si existe, convierte el texto JSON a un array de objetos
@@ -35,7 +35,7 @@ function obtenerVacantes() {
 
 // Recibe un array de vacantes y lo guarda en localStorage.
 // JSON.stringify() convierte el array a texto para poder guardarlo.
-function guardarVacantes(listaVacantes) {
+export function guardarVacantes(listaVacantes) {
     localStorage.setItem(CLAVE_VACANTES, JSON.stringify(listaVacantes));
 }
 
@@ -78,6 +78,7 @@ function guardarProcesos(listaProcesos) {
 //
 //  Ejemplo: 1741693847321
 // ============================================================
-function generarId() {
+export function generarId() {
     return Date.now();
 }
+
