@@ -3,6 +3,7 @@ import './App.css'
 import { Route, Routes, Navigate } from 'react-router-dom'
 import LoginPage from './Pages/LoginPage'
 import RegisterPage from './Pages/RegisterPage'
+import AspirantesPage from './Pages/AspirantesPage'
 import VacantesPage from './Pages/vacantesPage'
 
 import Aspirantes from './Components/Aspirantes'
