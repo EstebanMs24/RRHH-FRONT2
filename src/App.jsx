@@ -5,6 +5,8 @@ import LoginPage from './Pages/LoginPage'
 import RegisterPage from './Pages/RegisterPage'
 import VacantesPage from './Pages/vacantesPage'
 
+import Aspirantes from './Components/Aspirantes'
+import Navbar from './Components/Navbar'
 
 function App() {
 
@@ -57,6 +59,7 @@ function App() {
         <Route path='/Login' element={<LoginPage onLogin={handleLogin} />}/>
         <Route path='/Register' element={<RegisterPage user={userName} onLogout={handlerLogout}/>}/>
         <Route path='/vacantes' element={<VacantesPage user={userName} onLogout={handlerLogout}/>}/>
+        <Route path='/Aspirantes' element={isAuthenticated ? <><Navbar user={userName} onLogout={handlerLogout} /><Aspirantes /></> : <Navigate to="/Login" />}/>
       </Routes>
     </>
   )
