@@ -5,6 +5,7 @@ import LoginPage from './Pages/LoginPage'
 import RegisterPage from './Pages/RegisterPage'
 import AspirantesPage from './Pages/AspirantesPage'
 import VacantesPage from './Pages/vacantesPage'
+import ProcesosPage from './Pages/ProcesosPage'
 
 import Aspirantes from './Components/Aspirantes'
 import Navbar from './Components/Navbar'
@@ -61,6 +62,7 @@ function App() {
         <Route path='/Register' element={<RegisterPage user={userName} onLogout={handlerLogout}/>}/>
         <Route path='/vacantes' element={<VacantesPage user={userName} onLogout={handlerLogout}/>}/>
         <Route path='/Aspirantes' element={isAuthenticated ? <><Navbar user={userName} onLogout={handlerLogout} /><Aspirantes /></> : <Navigate to="/Login" />}/>
+        <Route path='/procesos' element={<ProcesosPage user={userName} onLogout={handlerLogout}/>}/>
       </Routes>
     </>
   )
